@@ -1,11 +1,11 @@
 <template>
 
 
-<div class="row d-flex justify-content-center text-center">
-  <div class="col-md-10">
+<div class="row d-flex justify-content-end text-center">
+  <div class="col-md-6">
     <div v-for="p in plug">
 <h3>{{p.title}}</h3>
-<img :src="p.banner" alt="">
+<img :src="p.tall" alt="" width="350">
 <p>{{p.linkURL}}</p>
 </div>
   </div>

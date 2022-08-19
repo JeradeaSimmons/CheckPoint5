@@ -8,7 +8,9 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: $body-bg;
+ background-image: url(https://images.unsplash.com/photo-1578922427288-a47338083a57?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGJhY2tncm91bmQlMjB0ZXh0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);
+ background-position: center;
+ background-size: cover;
 }
 
 main {

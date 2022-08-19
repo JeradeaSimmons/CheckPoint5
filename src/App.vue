@@ -1,5 +1,5 @@
 <template>
-  <header class="container-fluid" style="background-color: grey ;">
+  <header class="container-fluid" style="background-color: rosybrown ;">
     <div class="row d-flex justify-content-between">
 
       <div class="col-md-2">
@@ -7,18 +7,28 @@
           Home
         </router-link>
       </div>
+      <div class="col-md-4 text-center">
+        <h3>El Network</h3>
+      </div>
+
       <div class="col-md-2">
         <Login />
       </div>
     </div>
-
-
   </header>
+
+
   <main class="container-fluid">
-    
-    <router-view />
+    <div class="row">
+      <div class="col-md-7">
+        <router-view />
+      </div>
+      <div class="col-md-4">
+        <PlugsCard />
+      </div>
+    </div>
   </main>
-<PlugsCard />
+
 </template>
 
 <script>
