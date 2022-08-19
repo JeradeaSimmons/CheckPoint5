@@ -1,8 +1,23 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
+  <div class="text-center">
+    
     <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+    <h3>{{account.name}}</h3>
+    <p><b>{{account.bio}}</b></p>
+    <p>{{account.email}}</p>
+    
+
+
+    <div class="offcanvas offcanvas-bottom show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasLabel">Edit Account</h5>
+    
+  </div>
+  <div class="offcanvas-body">
+   <div><AccountForm /></div>
+  </div>
+</div>
+   
   </div>
 </template>
 
