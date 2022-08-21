@@ -8,7 +8,7 @@
 
       <span>
         <div> <router-link
-            :to="{ name: 'Profile' }"
+            :to="{ name: 'Profile', params: { profileId: p.creator.id} }"
             class="btn selectable text-uppercase">
             <img  class="rounded-circle" :src="p.creator.picture" alt="" height="50" :title="p.creator.name" >
           </router-link></div>
@@ -35,14 +35,18 @@
 <script>
 import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
-import { useRoute } from "vue-router";
 import { AppState } from "../AppState";
+import { Post } from "../models/Post";
 import { postsService } from "../services/PostsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 
 export default {
-  setup(){
+
+  props: {
+posts: {type: Post, required: true}
+  },
+  setup(props){
 
 
 
@@ -63,6 +67,7 @@ onMounted(async ()=> {
   
   return{
 posts: computed(()=> AppState.posts),
+
 
 
 
