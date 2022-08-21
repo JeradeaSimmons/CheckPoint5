@@ -1,5 +1,5 @@
 <template>
-  <header class="container-fluid" style="background-color: rosybrown ;">
+  <header class="container-fluid no-select" style="background-color: rosybrown ;">
     <div class="row d-flex justify-content-between">
 
       <div class="col-md-2">
@@ -18,9 +18,9 @@
   </header>
 
 
-  <main class="container-fluid">
-    <div class="row">
-      <div class="col-md-7">
+  <main class="container-fluid  overflow-auto no-select">
+    <div class="row my-3">
+      <div class="col-md-6">
         <router-view />
       </div>
       <div class="col-md-4">
