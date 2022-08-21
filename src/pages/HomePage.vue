@@ -20,7 +20,7 @@
   <div class="row d-flex justify-content-end text-center">
     <div class="col-md-11">
 
-      <PostCard />
+      <PostCard  />
     </div>
   </div>
 
@@ -53,7 +53,8 @@ export default {
             }
         };
     },
-    components: { PostForm }
+    components: { PostForm },
+    
 }
 
 </script>

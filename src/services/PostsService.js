@@ -1,4 +1,4 @@
-import { AuthPlugin } from "@bcwdev/auth0provider-client"
+
 import { AppState } from "../AppState"
 import { Post } from "../models/Post"
 
@@ -17,12 +17,22 @@ class PostsService{
 
   }
 
+  async getPostsByCreatorId(creatorId) {
+    const res = await bcwSandbox.get(`api/posts/`, {
+      params: {
+        creatorId
+      }
+    })
+    AppState.profilePosts = new Post(res.data)
+    console.log('[CREATOR DATA]', res.data);
+  }
+
 async createPost(postData){
   
   const res = await bcwSandbox.post(`/api/posts`, postData)
-  console.log('CREATE data', res);
-  AppState.posts.unshift = (new Post(res.data))
-  console.log('RES DATA',res.data);
+  
+  AppState.posts = res.data
+  
 }
 
 async editPost(postData){
@@ -32,12 +42,12 @@ async editPost(postData){
 }
 
 
-async deletePost(post) {
+async deletePost(id) {
   
+  console.log(id);
+  await bcwSandbox.delete(`/api/posts/${id}`)
   
-  await bcwSandbox.delete(`/api/posts/${post}`)
-  console.log(_id);
-  AppState.posts = AppState.posts.filter(p => p.id != post)
+  AppState.posts.posts = AppState.posts.posts.filter(p => p.id != id)
 
 }
 

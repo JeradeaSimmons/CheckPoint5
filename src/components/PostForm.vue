@@ -16,6 +16,7 @@
 import { computed } from "@vue/reactivity";
 import { ref, watchEffect } from "vue";
 import { AppState } from "../AppState";
+import { AuthService } from "../services/AuthService";
 
 
 import { postsService } from "../services/PostsService";
@@ -41,7 +42,7 @@ editable.value = { ...AppState.posts }
 
 
   return {
-posts: computed(()=> AppState.posts),
+
    
 
 editable,
@@ -52,8 +53,11 @@ editable,
           await postsService.editPost(editable.value)
           Pop.success('Post Updated')
         }else {
-          await postsService.createPost(editable.value)
+          
+             await postsService.createPost(editable.value)
           Pop.success('YAY YOU POSTED!!')
+          
+         
         }
         editable.value ={}
       } catch (error) {
@@ -61,7 +65,9 @@ editable,
         Pop.toast(error.message, 'error')
       }
       
-    }
+    },
+    posts: computed(()=> AppState.posts),
+
   };
 },
 };

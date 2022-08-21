@@ -1,17 +1,15 @@
 <template>
 
 
-<div class="row d-flex justify-content-end text-center">
-  <div class="col-md-6">
-    <div v-for="p in plug">
-<h3>{{p.title}}</h3>
-<img :src="p.tall" alt="" width="350">
-<p>{{p.linkURL}}</p>
-</div>
+
+
+  <div v-for="p in plug">
+    <div class="row d-flex justify-content-end text-center mx-2 my-5">
+      <div class="col-md-5">
+        <img :src="p.tall" alt="" width="350">
+      </div>
+    </div>
   </div>
-</div>
-
-
 
 </template>
 
