@@ -15,6 +15,7 @@ export const AppState = reactive({
   newerPage: null,
   olderPage: null,
   activePost: {},
+  likes: '',
 
 
    /**@type {import('./models/Profile.js').Profile} */

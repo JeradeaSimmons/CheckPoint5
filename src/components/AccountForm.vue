@@ -21,6 +21,18 @@
           style="resize:none"></textarea>
       </div>
       <div>
+        <label for="github">GitHub:</label>
+        <input type="text" class="form-control" v-model="editable.github" required name="github">
+      </div>
+      <div>
+        <label for="linkedin">LinkedIn:</label>
+        <input type="text" class="form-control" v-model="editable.linkedin" required name="linkedin">
+      </div>
+      <div>
+        <label for="resume">Resume:</label>
+        <input type="text" class="form-control" v-model="editable.resume" required name="resume">
+      </div>
+      <div>
         <button type="submit" class="btn btn-secondary w-100 mt-2">Save</button>
       </div>
     </div>

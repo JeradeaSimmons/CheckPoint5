@@ -4,7 +4,7 @@
 
   <div v-for="p in posts.posts">
 
-    <div class="card my-5"><img :src="p.imgUrl" alt="" height="500">
+    <div class="card my-5"><img :src="p.imgUrl" alt="" height="600">
 
       <span>
         <div>
@@ -22,7 +22,7 @@
             'numeric', year: '2-digit', hour: 'numeric', minute: "numeric"
         })
       }}
-      <span>{{ p.likes.length }}❤️</span>
+      <span>Likes:{{ p.likes.length }}<b  v-if="user.isAuthenticated" @click="likePost(p.id)" > ❤️</b></span>
       <span v-if="p.creator.id == account.id"><button class=" btn btn-secondary"
           @click="deletePost(p.id)">❌</button></span>
 
@@ -38,12 +38,14 @@
 
 <script>
 
+import { AuthPlugin } from "@bcwdev/auth0provider-client";
 import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { AppState } from "../AppState";
 import { Post } from "../models/Post";
 import { postsService } from "../services/PostsService";
+
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 
@@ -76,10 +78,18 @@ onMounted(async ()=> {
 posts: computed(()=> AppState.posts),
 profilePosts: computed(()=>AppState.profilePosts),
 account: computed(() => AppState.account),
+setActiveProfile: computed(()=> AppState.setActiveProfile),
+ user: computed(() => AppState.user),
 
-
-
-
+   async likePost(id){
+              try {
+                await postsService.likePost(id)
+                Pop.success('That was Awesome!!')
+              } catch (error) {
+                logger.error(error)
+                Pop.toast(error.message, 'error')
+              }
+            },
 
 async deletePost(p) {
         try {

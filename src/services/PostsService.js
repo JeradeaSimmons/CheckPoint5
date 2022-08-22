@@ -17,15 +17,7 @@ class PostsService{
 
   }
 
-  async getPostsByCreatorId(creatorId) {
-    const res = await bcwSandbox.get(`api/posts/`, {
-      params: {
-        creatorId
-      }
-    })
-    AppState.profilePosts = new Post(res.data)
-    console.log('[CREATOR DATA]', res.data);
-  }
+ 
 
 async createPost(postData){
   
@@ -41,7 +33,11 @@ async editPost(postData){
   AppState.posts.splice(index, 1, new Post(res.data))
 }
 
-
+async likePost(id){
+ const res = await bcwSandbox.post(`/api/posts/${id}/like`)
+   
+ 
+}
 async deletePost(id) {
   
   console.log(id);
@@ -51,6 +47,16 @@ async deletePost(id) {
 
 }
 
+async getPostsBySearch(searchTerm){
+  const res = await bcwSandbox.get('/api/posts', {
+    params: {
+      query: searchTerm
+    }
+   
+  }) 
+  AppState.posts = res.data
+console.log('[SEARCH]', res.data);
+}
 
 
 

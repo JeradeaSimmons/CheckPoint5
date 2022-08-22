@@ -4,9 +4,9 @@
 
 
   <div v-for="p in plug">
-    <div class="row d-flex justify-content-end text-center mx-2 my-5">
+    <div class="row d-flex justify-content-end text-center my-5">
       <div class="col-md-5">
-        <img :src="p.tall" alt="" width="350">
+        <img :src="p.tall" alt="" height="850" width="250">
       </div>
     </div>
   </div>
