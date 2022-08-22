@@ -34,7 +34,7 @@
     </div>
   </div>
 <div class="text-center">
- <PostCard v-for="p in posts" :key="p.posts.creatorId" :p="posts"/>
+ <PostCard v-for="p in posts" :key="p" :posts="p"/>
 </div>
 
 </template>
