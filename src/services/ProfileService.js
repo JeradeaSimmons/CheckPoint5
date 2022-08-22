@@ -12,35 +12,28 @@ async setActiveProfile(profile){
 }
   async getProfileById(id){
     const res = await bcwSandbox.get(`api/profiles/${id}`)
-console.log('[PROFILE ID]', id);
+
 
     AppState.activeProfile = new Profile(res.data)
-    console.log('Active Profile',AppState.activeProfile);
+    console.log('ACTIVE PROFILE',AppState.activeProfile);
     
   }
 
 
-
-  async getPostsByCreatorId(creatorId) {
-    const res = await bcwSandbox.get(`api/posts/`, {
-      params: {
-        creatorId
-      }
-    })
-    console.log(creatorId);
-   AppState.profilePosts = res.data
-    console.log('[CREATOR DATA]', res.data);
+  async changePage(url,id){
+    const res = await bcwSandbox.get(url,`api/posts/${id}/page`)
+    AppState.profilePosts = res.data
+    AppState.newerPage = res.data.newer
+    AppState.olderPage = res.data.older
+   
   }
 
 
-async getPostsByPostsId(postsId,posts){
-  const res = await bcwSandbox.get(`api/profiles/${postsId}`, {
-    params: {
-      posts
-    }
-  })
+
+async getPostsByProfileId(profileId){
+  const res = await bcwSandbox.get(`api/profiles/${profileId}/posts`)
   AppState.profilePosts = res.data
-  console.log('[POSTS ID]', res.data);
+  console.log('[PROFILE POSTS]', res.data);
 
 }
 }

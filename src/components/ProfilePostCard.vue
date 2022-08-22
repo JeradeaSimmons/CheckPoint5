@@ -2,16 +2,15 @@
 
 
 
-  <div v-for="p in posts.posts">
+  <div v-for="p in profilePosts.posts">
 
     <div class="card my-5"><img :src="p.imgUrl" alt="" height="600">
 
       <span>
         <div>
-          <router-link :to="{ name: 'Profile', params: { profileId: p.creator.id } }"
-            class="btn selectable text-uppercase">
+         
             <img class="rounded-circle" :src="p.creator.picture" alt="" height="50" :title="p.creator.name">
-          </router-link>
+          
         </div>
         <p class="my-2">
         <h4>{{ p.body }} </h4>
@@ -41,32 +40,21 @@
 
 import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
-import { useRoute } from "vue-router";
 import { AppState } from "../AppState";
-import { Post } from "../models/Post";
 import { postsService } from "../services/PostsService";
-
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 
 export default {
 
-  posts: {
-posts: {type: Post, required: true}
-  },
   setup(){
 
 
 
-const route = useRoute()
 
-onMounted(async ()=> {
-  try {
-    await postsService.getPosts()
-  } catch (error) {
-    logger.error('[getting posts]',error)
-    Pop.toast(error.message, 'error')
-  }
+
+onMounted(()=> {
+ 
   
 })
   

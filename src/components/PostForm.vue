@@ -11,12 +11,10 @@
 </template>
 
 <script>
+
 import { computed } from "@vue/reactivity";
 import { ref, watchEffect } from "vue";
 import { AppState } from "../AppState";
-import { AuthService } from "../services/AuthService";
-
-
 import { postsService } from "../services/PostsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";

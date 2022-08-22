@@ -6,18 +6,29 @@
     <div class="row">
       <img :src="profile.coverImg" alt="" height="650">
     </div>
-    <div class="row d-flex justify-content-around text-center">
-      <div class="col-md-5">
+    <div class="row d-flex justify-content-evenly text-center">
+      <div class="col-md-3">
         <img :src="profile.picture" alt="" height="55">
       </div>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <h3>{{profile.name}}</h3>
       </div>
+      <div class="col-md-3">
+        <h3>{{profile.class}}</h3>
+      </div>
+      <div class="col-md-2">
+        <h3 v-if="profile.graduated==true" >🎓</h3>
+        </div>
     </div>
     <div class="row d-flex justify-content-center">
       <div class="col-md-10 text-center">
         <p><b>{{ profile.bio }}</b></p>
       </div>
+    </div>
+    <div class="row d-flex justify-content-evenly text-center mb-3">
+     <div class="col-md-3"><a :href="profile.resume"><img src="https://www.bing.com/th?id=OIP.445ESeazr_QFkusNwyy9jAHaIp&w=231&h=270&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="" height="50"></a>  </div>
+     <div class="col-md-3"><a :href="profile.github"><img src="https://th.bing.com/th/id/OIP.MjKl469RxHnAC3EbI2nDdwHaHa?w=175&h=180&c=7&r=0&o=5&pid=1.7" alt="" height="50"></a>  </div>
+     <div class="col-md-3"><a :href="profile.linkedin"><img src="https://th.bing.com/th/id/OIP.EgSPriuEnAtlIWJV8R_E1QHaGs?w=204&h=184&c=7&r=0&o=5&pid=1.7" alt="" height="50"></a>  </div>
     </div>
   </div>
  </div>
@@ -28,13 +39,13 @@
       </button>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-dark" @click="changePage(olderPage)" :disabled="!olderPage">
+      <button class="btn btn-dark" @click="changePage(olderPage)" >
         OLDER
       </button>
     </div>
   </div>
 <div class="text-center">
- <PostCard v-for="p in posts" :key="p" :posts="p"/>
+ <ProfilePostCard  />
 </div>
 
 </template>
@@ -50,8 +61,6 @@ import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { router } from "../router";
-import { postsService } from "../services/PostsService";
-import { Post } from "../models/Post";
 
 
 
@@ -60,21 +69,21 @@ import { Post } from "../models/Post";
 
 
 export default {
- props:{
-posts:{type: Post}
- },
+
  
 
 setup() {
     const route = useRoute()
  
  onMounted(() => {
-       })
-getPostsByPostsId()
-getPostsByCreatorId()
+
+
+
+ })
+   
 getProfileById()
-  
-  
+
+ getPostsByProfileId() 
   
   async function getProfileById() {
        try {
@@ -86,18 +95,14 @@ getProfileById()
          router.push({ name: "Home" });
        }
      }
-async function getPostsByCreatorId() {
-       try {
-         await profileService.getPostsByCreatorId(route.params.profileId)
-       } catch (error) {
-         logger.error(error)
-         Pop.toast(error.message, 'error')
-       }
-       
-     } 
-     async function getPostsByPostsId(){
+ 
+  
+  
+
+
+     async function getPostsByProfileId(){
       try {
-        await profileService.getPostsByPostsId(route.params.profileId)
+        await profileService.getPostsByProfileId(route.params.profileId)
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -108,17 +113,18 @@ async function getPostsByCreatorId() {
   
   
   
-  
-  
   return {
 account: computed(() => AppState.account),
   profile: computed(() => AppState.activeProfile),
-  posts: computed(() => AppState.profilePosts),
+  profilePosts: computed(() => AppState.profilePosts),
   olderPage: computed(()=> AppState.olderPage),
   newerPage: computed(()=> AppState.newerPage),
+  posts: computed(()=> AppState.posts),
+
+
    async changePage(url) {
                 try {
-                    await postsService.changePage(url);
+                    await profileService.changePage(url);
                 }
                 catch (error) {
                     logger.error("[change page]", error);

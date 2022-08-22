@@ -5,15 +5,15 @@
     <div class="card-body text-start">
       <div>
         <label for="name">Name:</label>
-        <input type="text" class="form-control" v-model="editable.name" required name="name">
+        <input type="text" class="form-control" v-model="editable.name" name="name">
       </div>
       <div>
         <label for="picture">Picture:</label>
-        <input type="url" class="form-control" v-model="editable.picture" required name="picture" placeholder="picture">
+        <input type="url" class="form-control" v-model="editable.picture" name="picture" placeholder="picture">
       </div>
       <div>
         <label for="coverImg">Cover Image:</label>
-        <input type="url" class="form-control" v-model="editable.coverImg" required name="coverImg">
+        <input type="url" class="form-control" v-model="editable.coverImg"  name="coverImg">
       </div>
       <div>
         <label for="bio">Bio:</label>
@@ -22,16 +22,24 @@
       </div>
       <div>
         <label for="github">GitHub:</label>
-        <input type="text" class="form-control" v-model="editable.github" required name="github">
+        <input type="url" class="form-control" v-model="editable.github" name="github">
       </div>
       <div>
         <label for="linkedin">LinkedIn:</label>
-        <input type="text" class="form-control" v-model="editable.linkedin" required name="linkedin">
+        <input type="url" class="form-control" v-model="editable.linkedin"  name="linkedin">
       </div>
       <div>
         <label for="resume">Resume:</label>
-        <input type="text" class="form-control" v-model="editable.resume" required name="resume">
+        <input type="url" class="form-control" v-model="editable.resume" name="resume">
       </div>
+      <div>
+        <label for="class">Class:</label>
+        <input type="text" class="form-control" v-model="editable.class"  name="class">
+      </div>
+      <div class="form-group form-check">
+                <input type="checkbox" v-model="editable.graduated" id="graduated" class="form-check-input">
+                <label class="form-check-label" for="graduated">Graduated?</label>
+            </div>
       <div>
         <button type="submit" class="btn btn-secondary w-100 mt-2">Save</button>
       </div>
