@@ -1,4 +1,5 @@
 
+
 import { AppState } from "../AppState"
 import { Post } from "../models/Post"
 
@@ -23,7 +24,8 @@ async createPost(postData){
   
   const res = await bcwSandbox.post(`/api/posts`, postData)
   
-  AppState.posts = res.data
+  AppState.posts.posts = res.data
+  
   
 }
 

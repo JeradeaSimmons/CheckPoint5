@@ -1,10 +1,10 @@
 <template>
 
-      <form  v-if="user.isAuthenticated" @submit.prevent="handleSubmit">
+      <form v-if="user.isAuthenticated" @submit.prevent="handleSubmit">
         <p><b>CREATE POST</b></p>
         <p><input class="form-control" type="text" placeholder="Image Url" v-model= posts.imgUrl /></p>
         <p><input class="form-control" type="text" placeholder="Type Here" v-model= posts.body /></p>
-        <button class="btn btn-secondary my-2 p-2 bg-black text-white" type="submit">{{posts.id ? 'Save' : 'Post' }}</button>
+        <button class="btn btn-secondary my-2 p-2 bg-black text-white">{{posts.id ? 'Save' : 'Post' }}</button>
       </form>
   
 

@@ -4,7 +4,7 @@
 
   <div class="card m-5">
     <div class="row">
-      <img :src="profile.coverImg" alt="">
+      <img :src="profile.coverImg" alt="" height="650">
     </div>
     <div class="row d-flex justify-content-around text-center">
       <div class="col-md-5">
@@ -33,8 +33,8 @@
       </button>
     </div>
   </div>
-<div>
- <PostCard v-for="posts in posts" :key="creatorId" :posts="{}" />
+<div class="text-center">
+ <PostCard v-for="p in posts" :key="p.posts.creatorId" :p="posts"/>
 </div>
 
 </template>
@@ -69,35 +69,14 @@ setup() {
     const route = useRoute()
  
  onMounted(() => {
-       getProfileById()
-       getPostsByCreatorId()
-       getPostsByPostsId()
-       
-     })
-
-
-
-  return {
-
-
-  account: computed(() => AppState.account),
-  profile: computed(() => AppState.activeProfile),
-  posts: computed(() => AppState.profilePosts),
-  olderPage: computed(()=> AppState.olderPage),
-  newerPage: computed(()=> AppState.newerPage),
-   async changePage(url) {
-                try {
-                    await postsService.changePage(url);
-                }
-                catch (error) {
-                    logger.error("[change page]", error);
-                    Pop.toast(error.message, "error");
-                }
-            }
-
-
- }   
-     async function getProfileById() {
+       })
+getPostsByPostsId()
+getPostsByCreatorId()
+getProfileById()
+  
+  
+  
+  async function getProfileById() {
        try {
          await profileService.getProfileById(route.params.profileId);
        }
@@ -124,8 +103,35 @@ async function getPostsByCreatorId() {
         Pop.toast(error.message, 'error')
       }
      }
-     
+  
+  
+  
+  
+  
+  
+  
+  return {
+account: computed(() => AppState.account),
+  profile: computed(() => AppState.activeProfile),
+  posts: computed(() => AppState.profilePosts),
+  olderPage: computed(()=> AppState.olderPage),
+  newerPage: computed(()=> AppState.newerPage),
+   async changePage(url) {
+                try {
+                    await postsService.changePage(url);
+                }
+                catch (error) {
+                    logger.error("[change page]", error);
+                    Pop.toast(error.message, "error");
+                }
+            },
 
+
+
+
+
+
+ } 
 
    },
     
