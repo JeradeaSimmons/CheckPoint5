@@ -24,12 +24,12 @@
         <router-view />
       </div>
       <div class="col-md-4 ">
-        <div class="row d-flex justify-content-evenly text-center my-5">
+        <div class="row d-flex justify-content-evenly text-center my-1">
 
           <div class="col-md-4 my-5">
             
               <PostForm />
-              <div class="my-3">
+              <div class="my-2">
                 <!-- search form here when done -->
                 <SearchForm />
               </div>

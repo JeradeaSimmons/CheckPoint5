@@ -6,7 +6,7 @@
   <div v-for="p in plug">
     <div class="row d-flex justify-content-end text-center my-5">
       <div class="col-md-5">
-        <img :src="p.tall" alt="" height="850" width="250">
+        <img class="image-fluid" :src="p.tall" alt="" height="850" width="250">
       </div>
     </div>
   </div>

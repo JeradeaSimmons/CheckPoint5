@@ -35,11 +35,11 @@
 
  <div class="row d-flex justify-content-between text-center mx-5 my-5">
     <div class="col-md-4">
-      <button class="btn btn-dark" @click="changePage(newerPage)" :disabled="!newerPage">RECENT
+      <button class="btn btn-dark" @click="changeProfilePage(creatorId, profileNewerPage)" :disabled="!newerPage">RECENT
       </button>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-dark" @click="changePage(olderPage)" >
+      <button class="btn btn-dark" @click="changeProfilePage(creatorId, profileOlderPage)" :disabled="!olderPage">
         OLDER
       </button>
     </div>
@@ -117,14 +117,14 @@ getProfileById()
 account: computed(() => AppState.account),
   profile: computed(() => AppState.activeProfile),
   profilePosts: computed(() => AppState.profilePosts),
-  olderPage: computed(()=> AppState.olderPage),
-  newerPage: computed(()=> AppState.newerPage),
+  profileOlderPage: computed(()=> AppState.profileOlderPage),
+  profileNewerPage: computed(()=> AppState.profileNewerPage),
   posts: computed(()=> AppState.posts),
 
 
-   async changePage(url) {
+   async changeProfilePage(creatorId) {
                 try {
-                    await profileService.changePage(url);
+                    await profileService.changePage(creatorId);
                 }
                 catch (error) {
                     logger.error("[change page]", error);

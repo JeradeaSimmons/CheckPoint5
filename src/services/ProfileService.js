@@ -20,11 +20,14 @@ async setActiveProfile(profile){
   }
 
 
-  async changePage(url,id){
-    const res = await bcwSandbox.get(url,`api/posts/${id}/page`)
-    AppState.profilePosts = res.data
-    AppState.newerPage = res.data.newer
-    AppState.olderPage = res.data.older
+  async changeProfilePage(creatorId){
+    const res = await bcwSandbox.get(`/api/posts/${creatorId}`)
+    AppState.profilePosts = res.data.results
+    console.log('[ChangingPage]',res.data);
+    AppState.profileNewerPage = res.data.newer
+    AppState.profileOlderPage = res.data.older
+
+    console.log('[NEWER OLDER]', res.data.newer, res.data.older);
    
   }
 

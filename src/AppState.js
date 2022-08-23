@@ -18,9 +18,12 @@ export const AppState = reactive({
   likes: '',
  profilePosts: {},
 
+
    /**@type {import('./models/Profile.js').Profile} */
    activeProfile: null,
 
-   /**@type {import('./models/Post.js').Post[]} */
- 
+   /**@type {import('./models/ProfilePost.js').ProfilePost[]} */
+ profilePosts: {},
+  profileNewerPage: null,
+ profileOlderPage: null,
 })
